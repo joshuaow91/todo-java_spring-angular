@@ -4,26 +4,37 @@ import {DataService} from "../data.service";
 import {FormsModule} from "@angular/forms";
 import {Status} from "../enums/status.enum";
 import {Priority} from "../enums/priority.enum";
-import {NgForOf} from "@angular/common";
+import {NgForOf, NgIf} from "@angular/common";
+import {ModalService} from "../modal.service";
+import { Task } from '../task.model';
+import {EditTaskComponent} from "../edit-task/edit-task.component";
 
 @Component({
   selector: 'app-todo-list',
   templateUrl: './todo-list.component.html',
-  imports: [HttpClientModule, FormsModule, NgForOf],
+  imports: [HttpClientModule, FormsModule, NgForOf, EditTaskComponent, NgIf],
   standalone: true
 })
 export class TodoListComponent implements OnInit {
-  data: any;
   priority: null = null;
   status: null = null;
   dueDate: string = '';
   sortBy: string = 'id';
   direction: string = 'asc';
+  data: Task[] = [];
+  selectedTask: Task = {
+    id: 0,
+    title: '',
+    description: '',
+    status: '',
+    priority: '',
+    dueDate: ''
+  };
 
   priorities = Object.values(Priority);
   statuses = Object.values(Status);
 
-  constructor(private dataService: DataService) {}
+  constructor(private dataService: DataService, private modalService: ModalService) { }
 
   ngOnInit() {
     this.getTasks();
@@ -43,8 +54,20 @@ export class TodoListComponent implements OnInit {
     });
   }
 
-  editTask(task: any) {
-    console.log('Edit task:', task);
+  editTask(task: Task) {
+    this.selectedTask = { ...task };
+    this.modalService.open('editTaskModal');
+  }
+
+  saveTask(updatedTask: Task) {
+    this.dataService.updateTask(updatedTask.id, updatedTask).subscribe(() => {
+      this.getTasks();
+      this.modalService.close('editTaskModal');
+    });
+  }
+
+  cancelEdit() {
+    this.modalService.close('editTaskModal');
   }
 
   deleteTask(id: number) {

@@ -1,0 +1,35 @@
+<div class="mt-6 bg-gray-900 p-4 rounded-xl">
+  <div class="">
+    <h2 class="font-bold text-lg text-gray-400">Edit Task</h2>
+    <form class="flex flex-col gap-4">
+      <div class="flex gap-4">
+        <div>
+      <label for="title">Title:</label>
+      <input type="text" id="title" [(ngModel)]="task.title" name="title" class="bg-gray-600 ring-1 ring-gray-500 rounded-lg p-2">
+      </div>
+      <div>
+      <label for="description">Description:</label>
+      <input type="text" id="description" [(ngModel)]="task.description" name="description" class="bg-gray-600 ring-1 ring-gray-500 rounded-lg p-2">
+      </div>
+      <div>
+      <label for="status">Status:</label>
+        <select id="status" [(ngModel)]="task.status" name="status" class="bg-gray-600 ring-1 ring-gray-500 rounded-lg p-2">
+          <option *ngFor="let status of statusOptions" [value]="status">{{ status }}</option>
+        </select>      </div>
+      <div>
+      <label for="priority">Priority:</label>
+        <select id="priority" [(ngModel)]="task.priority" name="priority" class="bg-gray-600 ring-1 ring-gray-500 rounded-lg p-2">
+          <option *ngFor="let priority of priorityOptions" [value]="priority">{{ priority }}</option>
+        </select>      </div>
+      <div>
+      <label for="dueDate">Due Date:</label>
+      <input type="date" id="dueDate" [(ngModel)]="task.dueDate" name="dueDate" class="bg-gray-600 ring-1 ring-gray-500 rounded-lg p-2">
+      </div>
+      </div>
+      <div class="flex gap-4">
+      <button type="button" (click)="onSave()" class="bg-blue-500 p-2 px-6 rounded-lg hover:bg-blue-600 cursor-pointer">Save</button>
+      <button type="button" (click)="onCancel()" class="bg-blue-500 p-2 px-6 rounded-lg hover:bg-blue-600 cursor-pointer">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>

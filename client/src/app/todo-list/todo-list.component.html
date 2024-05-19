@@ -63,3 +63,12 @@
     }
   </tbody>
 </table>
+
+<div *ngIf="selectedTask">
+  <app-edit-task
+    [task]="selectedTask"
+    (save)="saveTask($event)"
+    (cancel)="cancelEdit()"
+    id="editTaskModal">
+  </app-edit-task>
+</div>
