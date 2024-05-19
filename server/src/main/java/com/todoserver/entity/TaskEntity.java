@@ -1,9 +1,8 @@
 package com.todoserver.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.todoserver.enums.Priority;
+import com.todoserver.enums.Status;
+import jakarta.persistence.*;
 
 @Entity
 @Table (name = "tasks")
@@ -13,40 +12,26 @@ public class TaskEntity {
     private Long id;
     private String title;
     private String description;
-    private String priority;
-    private String status;
+    @Enumerated(EnumType.STRING)
+    private Priority priority;
+    @Enumerated(EnumType.STRING)
+    private Status status;
     private String dueDate;
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public Long getId() {
         return id;
     }
 
-    public String getDueDate() {
-        return dueDate;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public void setDueDate(String dueDate) {
-        this.dueDate = dueDate;
+    public String getTitle() {
+        return title;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public String getPriority() {
-        return priority;
-    }
-
-    public void setPriority(String priority) {
-        this.priority = priority;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getDescription() {
@@ -57,11 +42,27 @@ public class TaskEntity {
         this.description = description;
     }
 
-    public String getTitle() {
-        return title;
+    public Priority getPriority() {
+        return priority;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setPriority(Priority priority) {
+        this.priority = priority;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    public String getDueDate() {
+        return dueDate;
+    }
+
+    public void setDueDate(String dueDate) {
+        this.dueDate = dueDate;
     }
 }

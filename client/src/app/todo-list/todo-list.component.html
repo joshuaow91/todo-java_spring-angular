@@ -1,4 +1,65 @@
-@for (post of data; track post.id){
-  <h1> {{ post.title }}</h1>
-  <p> {{ post.body }} </p>
-}
+<div class="grid grid-cols-3 mb-6 bg-gray-900/80 p-6 rounded-lg ring-1 ring-gray-700">
+
+  <div>
+  <label for="priority">Priority:</label>
+  <select id="priority" [(ngModel)]="priority" class="bg-gray-700 rounded-lg p-2 m-2">
+    <option [value]="null" >All</option>
+    <option *ngFor="let priority of priorities" [value]="priority">{{ priority }}</option>
+  </select>
+  </div>
+  <div>
+  <label for="status">Status:</label>
+  <select id="status" [(ngModel)]="status" class="bg-gray-700 rounded-lg p-2 m-2">
+    <option [value]="null">All</option>
+    <option *ngFor="let status of statuses" [value]="status">{{ status }}</option>
+  </select>
+  </div>
+  <div>
+  <label for="dueDate">Due Date:</label>
+  <input type="date" id="dueDate" [(ngModel)]="dueDate" class="bg-gray-700 rounded-lg p-2 m-2">
+  </div>
+  <div>
+  <label for="sortBy">Sort By:</label>
+  <select id="sortBy" [(ngModel)]="sortBy" class="bg-gray-700 rounded-lg p-2 m-2">
+    <option value="id">ID</option>
+    <option value="title">Title</option>
+    <option value="dueDate">Due Date</option>
+  </select>
+  </div>
+  <div>
+  <label for="direction">Direction:</label>
+  <select id="direction" [(ngModel)]="direction" class="bg-gray-700 rounded-lg p-2 m-2">
+    <option value="asc">Ascending</option>
+    <option value="desc">Descending</option>
+  </select>
+  </div>
+  <button (click)="getTasks()" class="bg-blue-500 p-2 m-2 hover:bg-blue-600 rounded-xl px-4">Filter</button>
+</div>
+
+<table class="border table-auto border-gray-600 w-full">
+  <thead>
+  <tr>
+    <th class="border px-4 py-2 border-gray-600">Title</th>
+    <th class="border px-4 py-2 border-gray-600">Description</th>
+    <th class="border px-4 py-2 border-gray-600">Status</th>
+    <th class="border px-4 py-2 border-gray-600">Due Date</th>
+    <th class="border px-4 py-2 border-gray-600">Priority</th>
+    <th class="border px-4 py-2 border-gray-600">Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+    @for (post of data; track post.id) {
+      <tr class="border px-4 py-2 border-gray-600">
+        <td class="border px-4 py-2 border-gray-600">{{ post.title }}</td>
+        <td class="border px-4 py-2 border-gray-600">{{ post.description }}</td>
+        <td class="border px-4 py-2 border-gray-600">{{ post.status }}</td>
+        <td class="border px-4 py-2 border-gray-600">{{ post.dueDate }}</td>
+        <td class="border px-4 py-2 border-gray-600">{{ post.priority }}</td>
+        <td class="border px-4 py-2 border-gray-600">
+          <button (click)="editTask(post)">Edit</button>
+          <button (click)="deleteTask(post.id)">Delete</button>
+        </td>
+      </tr>
+    }
+  </tbody>
+</table>

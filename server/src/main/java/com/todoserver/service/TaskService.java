@@ -2,8 +2,9 @@ package com.todoserver.service;
 
 
 import com.todoserver.entity.TaskEntity;
+import com.todoserver.enums.Priority;
+import com.todoserver.enums.Status;
 import com.todoserver.repository.TaskRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -14,12 +15,11 @@ import java.util.Optional;
 public class TaskService {
     private final TaskRepository taskRepository;
 
-    @Autowired
     public TaskService(TaskRepository taskRepository) {
         this.taskRepository = taskRepository;
     }
 
-    public List<TaskEntity> getAllTasks(String priority, String status, String dueDate, String sortBy, String direction) {
+    public List<TaskEntity> getAllTasks(Priority priority, Status status, String dueDate, String sortBy, String direction) {
         Sort sort = Sort.by(Sort.Direction.fromString(direction), sortBy);
         return taskRepository.findTasksByFilters(priority, status, dueDate, sort);
     }

@@ -2,8 +2,9 @@ package com.todoserver.controller;
 
 
 import com.todoserver.entity.TaskEntity;
+import com.todoserver.enums.Priority;
+import com.todoserver.enums.Status;
 import com.todoserver.service.TaskService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,15 +16,14 @@ import java.util.Optional;
 public class TaskController {
     private final TaskService taskService;
 
-    @Autowired
     public TaskController(TaskService taskService) {
         this.taskService = taskService;
     }
 
     @GetMapping
     public ResponseEntity<List<TaskEntity>> getTasks(
-            @RequestParam(required = false) String priority,
-            @RequestParam(required = false) String status,
+            @RequestParam(required = false) Priority priority,
+            @RequestParam(required = false) Status status,
             @RequestParam(required = false) String dueDate,
             @RequestParam(defaultValue = "id") String sortBy,
             @RequestParam(defaultValue = "asc") String direction) {
