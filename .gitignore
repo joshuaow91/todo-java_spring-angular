@@ -226,7 +226,7 @@ gradle-app.setting
 # Java heap dump
 *.hprof
 
-src/main/resources/**
+server/src/main/resources/**
 
 server/env.properties
 
