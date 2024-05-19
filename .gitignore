@@ -228,7 +228,7 @@ gradle-app.setting
 
 server/src/main/resources/**
 
-server/env.properties
+env.properties
 
 client.iml
 
