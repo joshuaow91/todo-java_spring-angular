@@ -1,5 +1,5 @@
 import {Component} from "@angular/core";
-import {DataService} from "../data.service";
+import {DataService} from "../services/data.service";
 import {FormsModule, NgForm} from '@angular/forms';
 import {CommonModule} from "@angular/common";
 import {Priority} from "../enums/priority.enum";

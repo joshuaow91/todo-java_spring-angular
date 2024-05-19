@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { Task } from '../task.model';
+import { Task } from '../models/task.model';
 import {FormsModule} from "@angular/forms";
 import {Status} from "../enums/status.enum";
 import {Priority} from "../enums/priority.enum";

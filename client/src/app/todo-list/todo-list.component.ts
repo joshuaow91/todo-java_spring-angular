@@ -1,12 +1,12 @@
 import {Component, OnInit} from "@angular/core";
 import {HttpClientModule} from "@angular/common/http";
-import {DataService} from "../data.service";
+import {DataService} from "../services/data.service";
 import {FormsModule} from "@angular/forms";
 import {Status} from "../enums/status.enum";
 import {Priority} from "../enums/priority.enum";
 import {NgForOf, NgIf} from "@angular/common";
-import {ModalService} from "../modal.service";
-import { Task } from '../task.model';
+import {ModalService} from "../services/modal.service";
+import { Task } from '../models/task.model';
 import {EditTaskComponent} from "../edit-task/edit-task.component";
 
 @Component({
